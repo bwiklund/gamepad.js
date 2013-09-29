@@ -1,2 +1,10 @@
-h1 Hello world
-p Lorem ipsum Consectetur aliquip sit est.
+div ng-app="gamepadApp" ng-controller="MainCtrl"
+  p {{gamepad.data.timestamp}}
+  p {{gamepad.data.index}}
+  p {{gamepad.data.id}}
+  ul
+    li ng-repeat="axis in gamepad.data.axes track by $index"
+      |{{axis}}}}
+  ul
+    li ng-repeat="button in gamepad.data.buttons track by $index"
+      |{{button}}
