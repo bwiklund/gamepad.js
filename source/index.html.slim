@@ -1,11 +1,15 @@
 div ng-app="gamepadApp" ng-controller="MainCtrl"
-  h1 {{gamepad.data.id}}
-  p Gamepad {{gamepad.data.index}}, Timestamp: {{gamepad.data.timestamp}}
-  ul
-    li ng-repeat="axis in gamepad.data.axes track by $index"
-      label Axis {{$index}}: 
-      value {{axis}}
-  ul
-    li ng-repeat="button in gamepad.data.buttons track by $index"
-      label Button {{$index}}: 
-      value {{button}}
+  div ng-repeat="gamepad in gamepads.gamepads track by $index"
+    div ng-if="!gamepad"  
+      |no gamepad connected
+    div ng-if="gamepad"
+      h1 {{gamepad.id}}
+      p Gamepad {{gamepad.index}}, Timestamp: {{gamepad.timestamp}}
+      ul
+        li ng-repeat="axis in gamepad.axes track by $index"
+          label Axis {{$index}}: 
+          value {{axis}}
+      ul
+        li ng-repeat="button in gamepad.buttons track by $index"
+          label Button {{$index}}: 
+          value {{button}}

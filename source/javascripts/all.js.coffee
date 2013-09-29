@@ -1,11 +1,10 @@
 # hello
 
-class Gamepad
+class Gamepads
   constructor: ->
 
   poll: ->
-    gamepads = navigator.webkitGetGamepads()
-    @data = gamepads[1]
+    @gamepads = navigator.webkitGetGamepads()
 
 
 
@@ -15,10 +14,10 @@ angular.module("gamepadApp", [])
 
 
 .controller 'MainCtrl', ($scope) ->
-  $scope.gamepad = new Gamepad
+  $scope.gamepads = new Gamepads
 
   updateLoop = ->
-    $scope.gamepad.poll()
+    $scope.gamepads.poll()
     $scope.$apply() if !$scope.$$phase
     requestAnimationFrame updateLoop
 
