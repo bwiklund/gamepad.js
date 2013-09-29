@@ -1,10 +1,11 @@
 div ng-app="gamepadApp" ng-controller="MainCtrl"
-  p {{gamepad.data.timestamp}}
-  p {{gamepad.data.index}}
-  p {{gamepad.data.id}}
+  h1 {{gamepad.data.id}}
+  p Gamepad {{gamepad.data.index}}, Timestamp: {{gamepad.data.timestamp}}
   ul
     li ng-repeat="axis in gamepad.data.axes track by $index"
-      |{{axis}}}}
+      label Axis {{$index}}: 
+      value {{axis}}
   ul
     li ng-repeat="button in gamepad.data.buttons track by $index"
-      |{{button}}
+      label Button {{$index}}: 
+      value {{button}}
