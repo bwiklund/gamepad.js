@@ -1,15 +1,32 @@
-div ng-app="gamepadApp" ng-controller="MainCtrl"
-  div ng-repeat="gamepad in gamepads.gamepads track by $index"
+h1 
+  |  HTML5 Gamepad Tester   
+  .icon.icon-gamepad
+p Press any button on your gamepad(s) to make them show up
+
+.gamepad-app ng-app="gamepadApp" ng-controller="MainCtrl"
+
+  .gamepad ng-repeat="gamepad in gamepads.gamepads track by $index"
+
     div ng-if="!gamepad"  
-      |no gamepad connected
+      h2 {{$index}}: no gamepad connected
+
     div ng-if="gamepad"
-      h1 {{gamepad.id}}
-      p Gamepad {{gamepad.index}}, Timestamp: {{gamepad.timestamp}}
-      ul
-        li ng-repeat="axis in gamepad.axes track by $index"
-          label Axis {{$index}}: 
-          value {{axis}}
-      ul
-        li ng-repeat="button in gamepad.buttons track by $index"
-          label Button {{$index}}: 
-          value {{button}}
+      h2 {{$index}}: {{gamepad.id}}
+
+      .info
+        ul
+          li.large
+            label TIMESTAMP 
+            value {{gamepad.timestamp}}
+
+      .axes
+        ul
+          li ng-style="shaderStyle(axis)" ng-repeat="axis in gamepad.axes track by $index"
+            label AXIS {{$index}}
+            value {{axis | number:6}}
+
+      .buttons
+        ul
+          li ng-style="shaderStyle(button)" ng-repeat="button in gamepad.buttons track by $index"
+            label B{{$index}}
+            value {{button}}
