@@ -8,10 +8,10 @@ p Press any button on your gamepad(s) to make them show up
   .gamepad ng-repeat="gamepad in gamepads.gamepads track by $index"
 
     div ng-if="!gamepad"  
-      h2 {{$index}}: no gamepad connected
+      h2.inactive {{$index}}: no gamepad connected
 
     div ng-if="gamepad"
-      h2 {{$index}}: {{gamepad.id}}
+      h2.active {{$index}}: {{gamepad.id}}
 
       .info
         ul
