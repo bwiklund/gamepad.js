@@ -1,8 +1,4 @@
-floormat
-========
+gamepad.js
+===
 
-An empty middleman project, set up with my favorites. Saves five minutes of setup.
-
-- Coffeescript
-- Slim
-- Sass
+A demo of the HTML5 Gamepad API.
