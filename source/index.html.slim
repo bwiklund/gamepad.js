@@ -1,7 +1,8 @@
 h1 
   |  HTML5 Gamepad Tester   
   .icon.icon-gamepad
-p Press any button on your gamepad(s) to make them show up
+p.subtitle Displays info about all gamepads connected to your computer
+p.hint Press any button on your gamepad(s) to make them show up
 
 .gamepad-app ng-app="gamepadApp" ng-controller="MainCtrl"
 
@@ -30,3 +31,23 @@ p Press any button on your gamepad(s) to make them show up
           li ng-style="shaderStyle(button)" ng-repeat="button in gamepad.buttons track by $index"
             label B{{$index}}
             value {{button}}
+
+  .faq
+    h2 FAQ
+
+    .question Why isn't my gamepad showing up?
+    .answer 
+      |The Gamepad API is still inconsistent across browsers and OSes. Some things to check:
+      ul
+        li Is the device plugged in / connected via bluetooth
+        li Press some buttons. On some devices, only certain buttons will wake up the gamepad API (the shapes on PS3 controllers, for instance)
+        li Close other apps that may be using the gamepad
+        li Restart your web browser
+
+    .question What information is being displayed here?
+    .answer 
+      |Multiple gamepads can be connected to a computer at once. This displays them all, and their current state.
+      ul
+        li Timestamp: the time of the latest update from the gamepad
+        li Axis [N]: The current position of the gamepad's analog inputs
+        li B [N]: The current on/off position of buttons. Supports analog buttons.
