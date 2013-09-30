@@ -6,12 +6,16 @@ p.hint Press any button on your gamepad(s) to make them show up
 
 .gamepad-app ng-app="gamepadApp" ng-controller="MainCtrl"
 
+  .gamepad ng-show="gamepads.gamepads.length == 0"
+    h2.inactive
+      span no gamepads connected
+
   .gamepad ng-repeat="gamepad in gamepads.gamepads track by $index"
 
     div ng-if="!gamepad"  
       h2.inactive 
         span.icon {{$index + 1}}  
-        span no gamepad connected
+        span n/a
 
     div ng-if="gamepad"
       h2.active 

@@ -4,7 +4,7 @@ class Gamepads
   constructor: ->
 
   poll: ->
-    @gamepads = navigator.webkitGetGamepads()
+    @gamepads = navigator.webkitGetGamepads?() || []
 
 
 
