@@ -13,7 +13,7 @@ class Gamepads
 angular.module("gamepadApp", [])
 
 
-.controller 'MainCtrl', ($scope) ->
+.controller 'MainCtrl', ['$scope', ($scope) ->
   $scope.gamepads = new Gamepads
 
   $scope.shaderStyle = (n) -> opacity: Math.abs(n)+0.3
@@ -24,3 +24,4 @@ angular.module("gamepadApp", [])
     requestAnimationFrame updateLoop
 
   updateLoop()
+]
