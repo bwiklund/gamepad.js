@@ -1,5 +1,5 @@
-h1 
-  |  HTML5 Gamepad Tester   
+h1
+  |  HTML5 Gamepad Tester
   .icon.icon-gamepad
 p.subtitle Displays info about all gamepads connected to your computer
 p.hint Press any button on your gamepad(s) to make them show up
@@ -12,42 +12,45 @@ p.hint Press any button on your gamepad(s) to make them show up
 
   .gamepad ng-repeat="gamepad in gamepads.gamepads track by $index"
 
-    div ng-if="!gamepad"  
-      h2.inactive 
-        span.icon {{$index + 1}}  
+    div ng-if="!gamepad"
+      h2.inactive
+        span.icon {{$index + 1}}
         span n/a
 
     div ng-if="gamepad"
-      h2.active 
-        span.icon {{$index + 1}}  
+      h2.active
+        span.icon {{$index + 1}}
         span {{gamepad.id}}
 
       .info
         ul
           li.large
-            label TIMESTAMP 
+            label TIMESTAMP
             value {{gamepad.timestamp}}
           li
-            label INDEX 
+            label INDEX
             value {{gamepad.index}}
+          li.med
+            label MAPPING
+            value {{mappingString(gamepad.mapping)}}
 
       .axes
         ul
-          li ng-style="shaderStyle(axis)" ng-repeat="axis in gamepad.axes track by $index"
+          li ng-style="axisStyle(axis)" ng-repeat="axis in gamepad.axes track by $index"
             label AXIS {{$index}}
             value {{axis | number:6}}
 
       .buttons
         ul
-          li ng-style="shaderStyle(button)" ng-repeat="button in gamepad.buttons track by $index"
+          li ng-style="buttonStyle(button)" ng-repeat="button in gamepad.buttons track by $index"
             label B{{$index}}
-            value {{button}}
+            value {{buttonValue(button)}}
 
   .faq
     h2 FAQ
 
     .question Why isn't my gamepad showing up?
-    .answer 
+    .answer
       |The Gamepad API is still inconsistent across browsers and OSes. Some things to check:
       ul
         li Is the device plugged in / connected via bluetooth
@@ -56,7 +59,7 @@ p.hint Press any button on your gamepad(s) to make them show up
         li Restart your web browser
 
     .question What information is being displayed here?
-    .answer 
+    .answer
       |Multiple gamepads can be connected to a computer at once. This displays them all, and their current state.
       ul
         li Timestamp: the time of the latest update from the gamepad
