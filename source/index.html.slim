@@ -47,7 +47,7 @@ p.hint Press any button on your gamepad(s) to make them show up
         ul
           li ng-style="buttonStyle(button)" ng-repeat="button in gamepad.buttons track by $index"
             label B{{$index}}
-            value {{buttonValue(button)}}
+            value {{buttonValue(button) | number:2}}
 
   .faq
     h2 FAQ
@@ -68,4 +68,3 @@ p.hint Press any button on your gamepad(s) to make them show up
         li Timestamp: the time of the latest update from the gamepad
         li Axis [N]: The current position of the gamepad's analog inputs
         li B [N]: The current on/off position of buttons. Supports analog buttons.
-
