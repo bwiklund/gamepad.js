@@ -1,19 +1,13 @@
-# hello
-
-class Gamepads
-  constructor: ->
-
-  poll: ->
-    @gamepads = navigator.getGamepads?() || navigator.webkitGetGamepads?() || []
-
-
-
-
-
 angular.module("gamepadApp", [])
 
 
-.controller 'MainCtrl', ['$scope', ($scope) ->
+.factory 'Gamepads', ->
+  class Gamepads
+    poll: ->
+      @gamepads = navigator.getGamepads?() || navigator.webkitGetGamepads?() || []
+
+
+.controller 'MainCtrl', ['$scope', 'Gamepads', ($scope, Gamepads) ->
   $scope.gamepads = new Gamepads
 
   $scope.axisStyle = (n) -> opacity: Math.abs(n)+0.3
