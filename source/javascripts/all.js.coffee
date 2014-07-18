@@ -22,10 +22,10 @@ angular.module 'gamepadApp', []
   $scope.axisStyle = (n) ->
     opacity: Math.abs(n) + 0.3
 
-  $scope.buttonStyle = (n) ->
-    val = $scope.buttonValue(n)
+  $scope.buttonStyle = (id) ->
+    val = $scope.buttonValue(id)
     opacity: Math.abs(val) + 0.3
-    border: if $scope.buttonPressed(n) then '1px solid #888' else '1px solid transparent'
+    border: if $scope.buttonPressed(id) then '1px solid #888' else '1px solid transparent'
 
   $scope.buttonValue = (b) ->
     if typeof(b) == 'number' then b else b.value
