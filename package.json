@@ -17,9 +17,9 @@
     "url": "https://github.com/bwiklund/gamepad.js/issues"
   },
   "homepage": "https://github.com/bwiklund/gamepad.js#readme",
-  "dependencies": {
-    "pug": "^2.0.3",
+  "devDependencies": {
+    "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.5",
-    "typescript": "^3.3.3333"
+    "coffeescript": "^2.3.2"
   }
 }
