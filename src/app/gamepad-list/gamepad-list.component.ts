@@ -11,6 +11,11 @@ export class GamepadListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.tick();
+  }
+
+  tick() {
+    window.requestAnimationFrame(() => this.tick());
     this.gamepads = navigator.getGamepads();
   }
 
