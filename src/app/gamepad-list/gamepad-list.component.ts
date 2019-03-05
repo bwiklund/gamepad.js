@@ -20,7 +20,9 @@ export class GamepadListComponent implements OnInit {
   }
 
   axisStyle(n) {
-    opacity: Math.abs(n) + 0.3
+    return {
+      opacity: Math.abs(n) + 0.3
+    }
   }
 
   buttonStyle(id) {

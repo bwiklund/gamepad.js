@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ng build --prod && rsync -avz dist/gamepad/ user@domain.com:/path/
