@@ -1,0 +1,105 @@
+body {
+  background: #222;
+  color: #fff;
+  box-sizing: border-box;
+  margin: 30px;
+  font-size: 12px;
+  line-height: 1.35;
+  font-family: Roboto, Helvetica, sans-serif;
+  font-weight: 300;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2 {
+  font-weight: 100;
+}
+h1 {
+  font-size: 300%;
+}
+.hint {
+  color: #fc0;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  color: inherit;
+}
+.gamepad-list .gamepad {
+  margin: 30px 0;
+  position: relative;
+}
+.gamepad-list .icon {
+  color: #fc0;
+}
+.gamepad-list h2.active {
+  color: #fff;
+}
+.gamepad-list h2.inactive {
+  color: #666;
+}
+.gamepad-list label {
+  width: 20px;
+  font-size: 100%;
+  color: #aaa;
+}
+.gamepad-list .value {
+  display: block;
+  text-align: right;
+  font-size: 150%;
+  margin-top: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.gamepad-list .info,
+.gamepad-list .axes,
+.gamepad-list .buttons {
+  margin: 5px 0;
+}
+.gamepad-list .info li,
+.gamepad-list .buttons li,
+.gamepad-list .axes li {
+  display: inline-block;
+  padding: 3px;
+  margin: 0 5px 5px 0;
+  background: #333;
+  line-height: 1;
+  opacity: 0.3;
+}
+.gamepad-list .info li {
+  width: 50px;
+}
+.gamepad-list .info li.med {
+  width: 100px;
+}
+.gamepad-list .info li.large {
+  width: 200px;
+}
+.gamepad-list .axes li {
+  width: 100px;
+}
+.gamepad-list .buttons li {
+  width: 35px;
+}
+.faq {
+  margin-top: 100px;
+}
+.faq h2 {
+  color: #888;
+  font-size: 200%;
+}
+.faq .question {
+  margin: 10px 0;
+}
+.faq .answer {
+  color: #888;
+  margin: 10px 20px;
+}
+.faq li {
+  list-style: disc;
+  margin-left: 20px;
+}

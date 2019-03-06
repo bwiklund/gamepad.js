@@ -21,13 +21,11 @@ export default class GamepadList extends React.Component<any, any> {
   }
 
   render() {
-    var gamepads = this.pollGamepads();
     var gamepadArr: (Gamepad | null)[] = [].slice.call(this.state.gamepads);
     var i = 0;
     var gamepadItems = gamepadArr.map(g => <GamepadItem gamepad={g} key={i} index={i++} />);
     return (
-      <div>
-        <p>This is the gamepad list.</p>
+      <div className="gamepad-list">
         {gamepadItems}
       </div>
     )

@@ -31,10 +31,10 @@ export default class GamepadItem extends React.Component<any, any> {
     var gamepad: (Gamepad | null) = this.props.gamepad;
     if (gamepad && gamepad as Gamepad) {
       return (
-        <div>
-          <h2 className="inactive">
+        <div className="gamepad">
+          <h2 className="active">
             <span className="icon">{this.props.index + 1} </span>
-            <span>n/a</span>
+            <span>{gamepad.id}</span>
           </h2>
 
           <div className="info">
@@ -54,14 +54,14 @@ export default class GamepadItem extends React.Component<any, any> {
           </div>
 
           <div className="axes">
-            {gamepad.axes.map(axis =>
-              <ul>
+            <ul>
+              {gamepad.axes.map(axis =>
                 <li style={this.axisStyle(axis)}>
                   <label>AXIS {0}</label>
                   <span className="value">{axis}</span>
                 </li>
-              </ul>
-            )}
+              )}
+            </ul>
           </div>
 
           <div className="buttons">
@@ -78,8 +78,8 @@ export default class GamepadItem extends React.Component<any, any> {
       )
     } else {
       return (
-        <div>
-          <h2 className="active">
+        <div className="gamepad">
+          <h2 className="inactive">
             <span className="icon">{this.props.index + 1} </span>
             <span>n/a</span>
           </h2 >
