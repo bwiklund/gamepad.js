@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+npm run build
+rsync -avz build/ user@domain:/path/
