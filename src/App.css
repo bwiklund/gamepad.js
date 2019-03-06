@@ -70,6 +70,17 @@ a {
   line-height: 1;
   opacity: 0.3;
 }
+.gamepad-list .info li.test-button,
+.gamepad-list .buttons li.test-button,
+.gamepad-list .axes li.test-button {
+  cursor: pointer;
+  background: #644;
+}
+.gamepad-list .info li.test-button:hover,
+.gamepad-list .buttons li.test-button:hover,
+.gamepad-list .axes li.test-button:hover {
+  opacity: 1;
+}
 .gamepad-list .info li {
   width: 50px;
 }

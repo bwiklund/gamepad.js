@@ -8,7 +8,7 @@ interface GamepadListState {
 export default class GamepadList extends React.Component<any, GamepadListState> {
   constructor(props: any) {
     super(props);
-    this.state = { gamepads: [] }
+    this.state = { gamepads: [] };
   }
 
   componentDidMount() {

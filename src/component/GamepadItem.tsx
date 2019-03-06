@@ -1,6 +1,17 @@
 import React from "react";
 
-export default class GamepadItem extends React.Component<any, any> {
+interface GamepadProps {
+  index: number;
+  gamepad: Gamepad | null;
+}
+
+declare global {
+  interface Gamepad {
+    vibrationActuator: any;
+  }
+}
+
+export default class GamepadItem extends React.Component<GamepadProps, any> {
   axisStyle(n: number) {
     return {
       opacity: Math.abs(n) + 0.3
@@ -32,8 +43,19 @@ export default class GamepadItem extends React.Component<any, any> {
     return "" + parseFloat("" + Math.round(n * m) / m).toFixed(places);
   }
 
+  testVibration() {
+    if (this.props.gamepad && this.props.gamepad.vibrationActuator) {
+      this.props.gamepad.vibrationActuator.playEffect("dual-rumble", {
+        startDelat: 0,
+        duration: 1000,
+        weakMagnitude: 1.0,
+        strongMagnitude: 1.0
+      });
+    }
+  }
+
   render() {
-    var gamepad: (Gamepad | null) = this.props.gamepad;
+    var gamepad = this.props.gamepad;
     if (gamepad && gamepad as Gamepad) {
       return (
         <div className="gamepad">
@@ -44,9 +66,6 @@ export default class GamepadItem extends React.Component<any, any> {
 
           <div className="info">
             <ul>
-              <li className="large"><label>TIMESTAMP</label>
-                <span className="value">{this.formatFloat(gamepad.timestamp, 5)}</span>
-              </li>
               <li>
                 <label>INDEX</label>
                 <span className="value">{gamepad.index}</span>
@@ -66,6 +85,9 @@ export default class GamepadItem extends React.Component<any, any> {
                   <span className="value">{gamepad.displayId}</span>
                 </li>
               }
+              <li className="large"><label>TIMESTAMP</label>
+                <span className="value">{this.formatFloat(gamepad.timestamp, 5)}</span>
+              </li>
             </ul>
           </div>
 
@@ -91,6 +113,21 @@ export default class GamepadItem extends React.Component<any, any> {
             </ul>
           </div>
 
+          <div className="info">
+            <ul>
+              <li className="med">
+                <label>VIBRATION</label>
+                <span className="value">{gamepad.vibrationActuator ? "Yes" : "No"}</span>
+              </li>
+              {
+                gamepad.vibrationActuator &&
+                <li className="med test-button" onClick={() => this.testVibration()}>
+                  <label>TEST</label>
+                  <span className="value">Vibration</span>
+                </li>
+              }
+            </ul>
+          </div>
         </div >
       )
     } else {
