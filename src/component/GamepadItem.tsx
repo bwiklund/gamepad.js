@@ -27,6 +27,11 @@ export default class GamepadItem extends React.Component<any, any> {
     return mapping || '[none]';
   }
 
+  formatFloat(n: number, places: number) {
+    var m = Math.pow(10, places);
+    return "" + parseFloat("" + Math.round(n * m) / m).toFixed(places);
+  }
+
   render() {
     var gamepad: (Gamepad | null) = this.props.gamepad;
     if (gamepad && gamepad as Gamepad) {
@@ -40,7 +45,7 @@ export default class GamepadItem extends React.Component<any, any> {
           <div className="info">
             <ul>
               <li className="large"><label>TIMESTAMP</label>
-                <span className="value">{Math.round(gamepad.timestamp)}</span>
+                <span className="value">{this.formatFloat(gamepad.timestamp, 5)}</span>
               </li>
               <li>
                 <label>INDEX</label>
@@ -55,10 +60,10 @@ export default class GamepadItem extends React.Component<any, any> {
 
           <div className="axes">
             <ul>
-              {gamepad.axes.map(axis =>
+              {gamepad.axes.map((axis, i) =>
                 <li style={this.axisStyle(axis)}>
-                  <label>AXIS {0}</label>
-                  <span className="value">{axis}</span>
+                  <label>AXIS {i}</label>
+                  <span className="value">{this.formatFloat(axis, 5)}</span>
                 </li>
               )}
             </ul>
@@ -66,10 +71,10 @@ export default class GamepadItem extends React.Component<any, any> {
 
           <div className="buttons">
             <ul>
-              {gamepad.buttons.map(button =>
+              {gamepad.buttons.map((button, i) =>
                 <li style={this.buttonStyle(button)}>
-                  <label>B{0}</label>
-                  <span className="value">{this.buttonValue(button)}</span>
+                  <label>B{i}</label>
+                  <span className="value">{this.formatFloat(this.buttonValue(button), 2)}</span>
                 </li>
               )}
             </ul>

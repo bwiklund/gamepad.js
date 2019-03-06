@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import GamepadList from './component/GamepadList';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <GamepadList />
       </div>
     );
   }
 }
-
-export default App;

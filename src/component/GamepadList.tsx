@@ -1,12 +1,14 @@
 import React from "react";
 import GamepadItem from './GamepadItem';
 
-export default class GamepadList extends React.Component<any, any> {
+interface GamepadListState {
+  gamepads: (Gamepad | null)[];
+}
+
+export default class GamepadList extends React.Component<any, GamepadListState> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      gamepads: this.pollGamepads()
-    }
+    this.state = { gamepads: [] }
   }
 
   componentDidMount() {
@@ -14,19 +16,17 @@ export default class GamepadList extends React.Component<any, any> {
   }
 
   tick() {
-    this.setState({
-      gamepads: this.pollGamepads()
-    });
+    this.setState({ gamepads: this.pollGamepads() });
     window.requestAnimationFrame(() => this.tick())
   }
 
   render() {
     var gamepadArr: (Gamepad | null)[] = [].slice.call(this.state.gamepads);
-    var i = 0;
-    var gamepadItems = gamepadArr.map(g => <GamepadItem gamepad={g} key={i} index={i++} />);
     return (
       <div className="gamepad-list">
-        {gamepadItems}
+        {gamepadArr.map((g, i) =>
+          <GamepadItem gamepad={g} key={i} index={i} />
+        )}
       </div>
     )
   }
