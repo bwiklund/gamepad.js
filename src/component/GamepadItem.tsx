@@ -11,6 +11,17 @@ declare global {
   }
 }
 
+class AxisItem extends React.Component<any> {
+  render() {
+    return (
+      <li className={this.props.className} style={this.props.style}>
+        <label>{this.props.label}</label>
+        <span className="value">{this.props.value}</span>
+      </li>
+    )
+  }
+}
+
 export default class GamepadItem extends React.Component<GamepadProps, any> {
   axisStyle(n: number) {
     return {
@@ -64,79 +75,39 @@ export default class GamepadItem extends React.Component<GamepadProps, any> {
             <span>{gamepad.id}</span>
           </h2>
 
-          <div className="info">
-            <ul>
-              <li>
-                <label>INDEX</label>
-                <span className="value">{gamepad.index}</span>
-              </li>
-              <li className="med">
-                <label>CONNECTED</label>
-                <span className="value">{gamepad.connected ? "Yes" : "No"}</span>
-              </li>
-              <li className="med">
-                <label>MAPPING</label>
-                <span className="value">{this.mappingString(gamepad.mapping)}</span>
-              </li>
-              <li className="large"><label>TIMESTAMP</label>
-                <span className="value">{this.formatFloat(gamepad.timestamp, 5)}</span>
-              </li>
-            </ul>
-          </div>
+          <ul className="info">
+            <AxisItem label="INDEX" value={gamepad.index} />
+            <AxisItem className="med" label="CONNECTED" value={gamepad.connected ? "Yes" : "No"} />
+            <AxisItem className="med" label="MAPPING" value={this.mappingString(gamepad.mapping)} />
+            <AxisItem className="large" label="TIMESTAMP" value={this.formatFloat(gamepad.timestamp, 5)} />
+          </ul>
 
-          <div className="axes">
-            <ul>
-              {gamepad.axes.map((axis, i) =>
-                <li key={i} style={this.axisStyle(axis)}>
-                  <label>AXIS {i}</label>
-                  <span className="value">{this.formatFloat(axis, 5)}</span>
-                </li>
-              )}
-            </ul>
-          </div>
+          <ul className="axes">
+            {gamepad.axes.map((axis, i) =>
+              <AxisItem key={i} label="INDEX" value={this.formatFloat(axis, 5)} style={this.axisStyle(axis)} />
+            )}
+          </ul>
 
-          <div className="buttons">
-            <ul>
-              {gamepad.buttons.map((button, i) =>
-                <li key={i} style={this.buttonStyle(button)}>
-                  <label>B{i}</label>
-                  <span className="value">{this.formatFloat(this.buttonValue(button), 2)}</span>
-                </li>
-              )}
-            </ul>
-          </div>
+          <ul className="buttons">
+            {gamepad.buttons.map((button, i) =>
+              <AxisItem key={i} label={"B" + i} value={this.formatFloat(this.buttonValue(button), 2)} style={this.buttonStyle(button)} />
+            )}
+          </ul>
 
-          <div className="info">
-            <ul>
-              <li className="med">
-                <label>Pose</label>
-                <span className="value">{gamepad.pose && Object.keys(gamepad.pose).length > 0 ? "Yes" : "n/a"}</span>
+          <ul className="info">
+            <AxisItem className="med" label="Pose" value={gamepad.pose && Object.keys(gamepad.pose).length > 0 ? "Yes" : "n/a"} />
+            <AxisItem className="med" label="HapticActuators" value={gamepad.hapticActuators && Object.keys(gamepad.hapticActuators).length > 0 ? "Yes" : "n/a"} />
+            <AxisItem className="med" label="Hand" value={gamepad.hand ? gamepad.hand : "n/a"} />
+            <AxisItem className="med" label="DisplayId" value={gamepad.displayId != null ? gamepad.displayId : "n/a"} />
+            <AxisItem className="med" label="Vibration" value={gamepad.vibrationActuator ? "Yes" : "n/a"} />
+            {
+              gamepad.vibrationActuator &&
+              <li className="med test-button" onClick={() => this.testVibration()}>
+                <label>TEST</label>
+                <span className="value">Vibration</span>
               </li>
-              <li className="med">
-                <label>HapticActuators</label>
-                <span className="value">{gamepad.hapticActuators && Object.keys(gamepad.hapticActuators).length > 0  ? "Yes" : "n/a"}</span>
-              </li>
-              <li className="med">
-                <label>Hand</label>
-                <span className="value">{gamepad.hand ? gamepad.hand : "n/a"}</span>
-              </li>
-              <li className="med">
-                <label>DisplayId</label>
-                <span className="value">{gamepad.displayId != null ? gamepad.displayId : "n/a"}</span>
-              </li>
-              <li className="med">
-                <label>VIBRATION</label>
-                <span className="value">{gamepad.vibrationActuator ? "Yes" : "n/a"}</span>
-              </li>
-              {
-                gamepad.vibrationActuator &&
-                <li className="med test-button" onClick={() => this.testVibration()}>
-                  <label>TEST</label>
-                  <span className="value">Vibration</span>
-                </li>
-              }
-            </ul>
-          </div>
+            }
+          </ul>
         </div >
       )
     } else {
@@ -145,8 +116,8 @@ export default class GamepadItem extends React.Component<GamepadProps, any> {
           <h2 className="inactive">
             <span className="icon">{this.props.index + 1} </span>
             <span>n/a</span>
-          </h2 >
-        </div >
+          </h2>
+        </div>
       )
     }
   }
