@@ -78,13 +78,6 @@ export default class GamepadItem extends React.Component<GamepadProps, any> {
                 <label>MAPPING</label>
                 <span className="value">{this.mappingString(gamepad.mapping)}</span>
               </li>
-              {
-                gamepad.displayId !== undefined &&
-                <li className="med">
-                  <label>DISPAY ID</label>
-                  <span className="value">{gamepad.displayId}</span>
-                </li>
-              }
               <li className="large"><label>TIMESTAMP</label>
                 <span className="value">{this.formatFloat(gamepad.timestamp, 5)}</span>
               </li>
@@ -116,8 +109,24 @@ export default class GamepadItem extends React.Component<GamepadProps, any> {
           <div className="info">
             <ul>
               <li className="med">
+                <label>Pose</label>
+                <span className="value">{gamepad.pose && Object.keys(gamepad.pose).length > 0 ? "Yes" : "n/a"}</span>
+              </li>
+              <li className="med">
+                <label>HapticActuators</label>
+                <span className="value">{gamepad.hapticActuators && Object.keys(gamepad.hapticActuators).length > 0  ? "Yes" : "n/a"}</span>
+              </li>
+              <li className="med">
+                <label>Hand</label>
+                <span className="value">{gamepad.hand ? gamepad.hand : "n/a"}</span>
+              </li>
+              <li className="med">
+                <label>DisplayId</label>
+                <span className="value">{gamepad.displayId != null ? gamepad.displayId : "n/a"}</span>
+              </li>
+              <li className="med">
                 <label>VIBRATION</label>
-                <span className="value">{gamepad.vibrationActuator ? "Yes" : "No"}</span>
+                <span className="value">{gamepad.vibrationActuator ? "Yes" : "n/a"}</span>
               </li>
               {
                 gamepad.vibrationActuator &&

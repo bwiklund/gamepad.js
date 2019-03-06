@@ -41,7 +41,8 @@
   <div class="faq">
     <h2>FAQ</h2>
     <div class="question">Why isn't my gamepad showing up?</div>
-    <div class="answer">The Gamepad API is still inconsistent across browsers and OSes. Some things to check:<ul>
+    <div class="answer">The Gamepad API is still inconsistent across browsers and OSes. Some things to check:
+      <ul>
         <li>Is the device plugged in / connected via bluetooth</li>
         <li>Press some buttons. On some devices, only certain buttons will wake up the gamepad API (the shapes on PS3
           controllers, for instance)</li>
@@ -50,13 +51,17 @@
       </ul>
     </div>
     <div class="question">What information is being displayed here?</div>
-    <div class="answer">Multiple gamepads can be connected to a computer at once. This displays them all, and their
-      current state.<ul>
+    <div class="answer">Multiple gamepads can be connected to a computer at once. This displays them all, and their current state.
+      <ul>
         <li>Timestamp: the time of the latest update from the gamepad</li>
         <li>Axis [N]: The current position of the gamepad's analog inputs</li>
         <li>B [N]: The current on/off position of buttons. Supports analog buttons.</li>
       </ul>
     </div>
+    <div class="question">Does vibration work?</div>
+    <div class="answer">Chrome is, so far, the only browser that supports vibration.</div>
+    <div class="question">What about experiemental features?</div>
+    <div class="answer">Features like Pose, HapticActuators, and others, are not widely supported yet.<br>Once browsers start supporting them, this page will be updated.</div>
   </div>
 
   <script type="text/javascript">(function (i, s, o, g, r, a, m) {
