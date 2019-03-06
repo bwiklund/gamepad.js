@@ -1,8 +1,30 @@
 import React from "react";
 
 export default class GamepadItem extends React.Component<any, any> {
-  mappingString(n: string) {
-    return n;
+  axisStyle(n: number) {
+    return {
+      opacity: Math.abs(n) + 0.3
+    }
+  }
+
+  buttonStyle(id: any) {
+    var val = this.buttonValue(id);
+    return {
+      opacity: Math.abs(val) + 0.3,
+      border: this.buttonPressed(id) ? '1px solid #888' : '1px solid transparent'
+    }
+  }
+
+  buttonValue(b: any) {
+    return (typeof (b) == 'number') ? b : b.value;
+  }
+
+  buttonPressed(b: any) {
+    return (typeof (b) == 'number') ? b > 0.1 : b.pressed
+  }
+
+  mappingString(mapping: GamepadMappingType) {
+    return mapping || '[none]';
   }
 
   render() {
@@ -29,6 +51,18 @@ export default class GamepadItem extends React.Component<any, any> {
                 <span className="value">{this.mappingString(gamepad.mapping)}</span>
               </li>
             </ul>
+          </div>
+          <div className="axes">
+            {
+              gamepad.axes.map(axis =>
+                <ul>
+                  <li style={this.axisStyle(axis)}>
+                    <label>AXIS {0}</label>
+                    <span className="value">{axis}</span>
+                  </li>
+                </ul>
+              )
+            }
           </div>
         </div>
       )
