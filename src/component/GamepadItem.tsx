@@ -7,7 +7,7 @@ export default class GamepadItem extends React.Component<any, any> {
     }
   }
 
-  buttonStyle(id: any) {
+  buttonStyle(id: GamepadButton) {
     var val = this.buttonValue(id);
     return {
       opacity: Math.abs(val) + 0.3,
@@ -15,11 +15,11 @@ export default class GamepadItem extends React.Component<any, any> {
     }
   }
 
-  buttonValue(b: any) {
+  buttonValue(b: GamepadButton) {
     return (typeof (b) == 'number') ? b : b.value;
   }
 
-  buttonPressed(b: any) {
+  buttonPressed(b: GamepadButton) {
     return (typeof (b) == 'number') ? b > 0.1 : b.pressed
   }
 
@@ -52,19 +52,29 @@ export default class GamepadItem extends React.Component<any, any> {
               </li>
             </ul>
           </div>
+
           <div className="axes">
-            {
-              gamepad.axes.map(axis =>
-                <ul>
-                  <li style={this.axisStyle(axis)}>
-                    <label>AXIS {0}</label>
-                    <span className="value">{axis}</span>
-                  </li>
-                </ul>
-              )
-            }
+            {gamepad.axes.map(axis =>
+              <ul>
+                <li style={this.axisStyle(axis)}>
+                  <label>AXIS {0}</label>
+                  <span className="value">{axis}</span>
+                </li>
+              </ul>
+            )}
           </div>
-        </div>
+
+          <div className="buttons">
+            <ul>
+              {gamepad.buttons.map(button =>
+                <li style={this.buttonStyle(button)}>
+                  <label>B{0}</label>
+                  <span className="value">{this.buttonValue(button)}</span>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div >
       )
     } else {
       return (
