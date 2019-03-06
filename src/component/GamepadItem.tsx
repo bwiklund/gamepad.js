@@ -24,7 +24,7 @@ export default class GamepadItem extends React.Component<any, any> {
   }
 
   mappingString(mapping: GamepadMappingType) {
-    return mapping || '[none]';
+    return mapping || 'n/a';
   }
 
   formatFloat(n: number, places: number) {
@@ -52,9 +52,20 @@ export default class GamepadItem extends React.Component<any, any> {
                 <span className="value">{gamepad.index}</span>
               </li>
               <li className="med">
+                <label>CONNECTED</label>
+                <span className="value">{gamepad.connected ? "Yes" : "No"}</span>
+              </li>
+              <li className="med">
                 <label>MAPPING</label>
                 <span className="value">{this.mappingString(gamepad.mapping)}</span>
               </li>
+              {
+                gamepad.displayId !== undefined &&
+                <li className="med">
+                  <label>DISPAY ID</label>
+                  <span className="value">{gamepad.displayId}</span>
+                </li>
+              }
             </ul>
           </div>
 
@@ -79,6 +90,7 @@ export default class GamepadItem extends React.Component<any, any> {
               )}
             </ul>
           </div>
+
         </div >
       )
     } else {
